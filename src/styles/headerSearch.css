@@ -1,0 +1,28 @@
+.header-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.search-icons {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.search-panel__hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s !important;
+  scale: 0;
+}
+
+.search-panel__hide.active {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s;
+  scale: 1;
+}

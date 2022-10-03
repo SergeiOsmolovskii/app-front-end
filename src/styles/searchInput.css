@@ -1,0 +1,30 @@
+.search-input-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  padding: 0 30px;
+  background: var(--header-background-color);
+  transition: 0.5s;
+}
+
+.search-input-box input {
+  height: 50px;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  background: var(--header-background-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+.search-input-box input::placeholder {
+  color: var(--text-color);
+}
+
+.search-input-box.active {
+  right: 0;
+  transition: 0.5s;
+}
