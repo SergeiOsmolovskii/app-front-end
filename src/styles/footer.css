@@ -1,0 +1,44 @@
+.footer-main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--footer-height);
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: var(--header-background-color);
+  overflow: hidden;
+}
+
+.footer-main-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-main-list--item {
+  list-style: none;
+}
+
+.github-icon {
+  color: #f0f6fc;
+}
+
+.github-icon:hover {
+  color: rgba(255, 255, 255, 0.4);
+  transition: 0.5s;
+}
+
+.linked-in-icon {
+  color: #1976d2;
+  transition: 0.5s !important;
+}
+
+.linked-in-icon:hover {
+  color: #0d47a1;
+  transition: 0.5s;
+}
