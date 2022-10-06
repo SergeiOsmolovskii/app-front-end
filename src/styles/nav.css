@@ -1,6 +1,7 @@
 .header-navigation {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .header-navigation-list {

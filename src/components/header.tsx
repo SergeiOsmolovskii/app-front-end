@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box/Box';
 import * as React from 'react';
 
 import './../styles/header.css';
@@ -7,13 +8,11 @@ import { HeaderNav } from './ui/nav';
 export const Header = (theme: any) => {
   const currentTheme = theme.currentTheme;
   const toggleColorMode = theme.mode;
-  console.log(toggleColorMode)
   
   return (
-    <header className='header-main'>
+    <Box component="header" className='header-main' height={80} sx={{backgroundColor: 'primary.main'}}> 
       <Logo/>
-      <HeaderNav currentTheme={currentTheme} mode={toggleColorMode} />
-    </header>
+      <HeaderNav  currentTheme={currentTheme} mode={toggleColorMode}/>
+    </Box>
   );
 }
-
