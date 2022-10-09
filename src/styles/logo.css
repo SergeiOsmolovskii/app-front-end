@@ -1,6 +1,4 @@
 .logo {
-  height: 40px;
-  width: 100px;
-  background: url(./../assets/logo.svg) no-repeat center;
-  background-size: contain;
+  height: 40px !important;
+  width: 100px !important;
 }

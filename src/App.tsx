@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import './App.css';
 import { Header } from 'components/header';
+import Box from '@mui/material/Box/Box';
 import { Footer } from 'components/footer';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -28,9 +29,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header currentTheme={theme} mode={colorMode} />
-      <main>
+      <Box component="main" sx={{backgroundColor: 'bodyBG'}}>
 
-      </main>
+      </Box>
       <Footer />
     </ThemeProvider>
   );

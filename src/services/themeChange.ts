@@ -9,16 +9,18 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
         primary: {
-          main: '#bac7be',
+          main: '#5BC0BE  ',
           secondary: '#BAC7BE',
           error: '#ef5350',
           Warning: '#ff9800',
           info: '#03a9f4',
           success: '#4caf50',
         },
+        bodyBG: '#96aeb1',
+        logoBG: '#ffffff',
         divider: amber[200],
         text: {
-          primary: '#ffffff',
+          primary: '#252525',
           secondary: grey[800],
         },
       }
@@ -31,13 +33,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           info: '#01579b',
           success: '#1b5e20',
         },
+        bodyBG: '#292929',
+        logoBG: '#7fc37e',
         divider: deepOrange[700],
         background: {
           default: deepOrange[900],
           paper: deepOrange[900],
         },
         text: {
-          primary: '#fff',
+          primary: '#dddddd',
           secondary: grey[500],
         },
       }),
