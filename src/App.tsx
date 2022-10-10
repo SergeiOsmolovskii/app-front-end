@@ -1,11 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import './App.css';
-import { Header } from 'components/header';
-import Box from '@mui/material/Box/Box';
-import { Footer } from 'components/footer';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Header } from './components/header';
+import { Footer } from './components/footer';
+import { AsideNav } from './components/asideNav';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
+import Box from '@mui/material/Box/Box';
+
 import { getDesignTokens } from './services/themeChange';
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header currentTheme={theme} mode={colorMode} />
       <Box component="main" sx={{backgroundColor: 'bodyBG'}}>
-
+        <AsideNav />
       </Box>
       <Footer />
     </ThemeProvider>

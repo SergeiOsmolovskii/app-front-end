@@ -9,7 +9,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
         primary: {
-          main: '#5BC0BE  ',
+          main: '#5BC0BE',
           secondary: '#BAC7BE',
           error: '#ef5350',
           Warning: '#ff9800',
@@ -27,7 +27,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       : {
         primary: {
           main: '#0B132B',
-          secondary: '3a506b',
+          secondary: '#3a506b',
           error: '#c62828',
           Warning: '#e65100',
           info: '#01579b',

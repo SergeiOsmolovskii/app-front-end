@@ -1,0 +1,74 @@
+.aside-nav {
+  position: fixed;
+  width: 80px;
+  inset: 100px 20px;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.aside-nav .aside-nav-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.aside-nav-list--item {
+  position: relative;
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  cursor: pointer;
+}
+
+.aside-nav-list--item:first-child {
+  top: 20px;
+  margin-bottom: 40px;
+}
+
+.aside-nav-list--item:hover {
+  background-color: transparent;
+}
+
+.aside-nav-list--item:hover:not(:first-child) {
+  background-color: #fff;
+  color: #a79c9c;
+}
+
+.aside-nav--icon {
+  margin-right: 30px;
+}
+
+.aside-nav.aside-nav--active {
+  width: 300px !important;
+  border-radius: 20px;
+}
+
+.aside-nav-list--item--text {
+  white-space: nowrap;
+}
+
+.aside-nav-list--item:not(:first-child):hover::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom-right-radius: 20px;
+  background: transparent;
+  box-shadow: 7.5px 7.5px 0 7.5px #fff;
+}
+
+.aside-nav-list--item:not(:first-child):hover::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-top-right-radius: 20px;
+  background: transparent;
+  box-shadow: 7.5px -7.5px 0 7.5px #fff;
+}
