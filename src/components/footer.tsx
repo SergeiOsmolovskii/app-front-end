@@ -12,7 +12,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 export const Footer = () => {
   return (
 
-    <Box component="footer" height={80} sx={{backgroundColor: 'primary.main'}}>
+    <Box component="footer" className='footer-main' height={80} sx={{backgroundColor: 'primary.main'}}>
       <List sx={{ display: 'flex', height: '100%' }}>
 
         <ListItem alignItems="center" sx={{ justifyContent: 'center' }}>

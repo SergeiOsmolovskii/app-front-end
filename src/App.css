@@ -12,5 +12,6 @@ main {
   font-size: 20px;
   font-weight: bold;
   overflow: hidden;
+  transition: 1s;
 /*   filter: brightness(150%); */
 }
