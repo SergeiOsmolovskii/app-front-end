@@ -36,6 +36,10 @@
   color: #a79c9c;
 }
 
+.aside-nav-list--item:hover:not(:first-child) a {
+  color: #a79c9c;
+}
+
 .aside-nav--icon {
   margin-right: 30px;
 }

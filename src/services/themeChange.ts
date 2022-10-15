@@ -20,7 +20,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         logoBG: '#ffffff',
         divider: amber[200],
         text: {
-          primary: '#252525',
+          primary: '#ffffff',
           secondary: grey[800],
         },
       }
@@ -41,7 +41,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           paper: deepOrange[900],
         },
         text: {
-          primary: '#dddddd',
+          primary: '#ffffff',
           secondary: grey[500],
         },
       }),
