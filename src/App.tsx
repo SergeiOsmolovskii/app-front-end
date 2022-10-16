@@ -19,13 +19,18 @@ import Box from '@mui/material/Box/Box';
 
 function App() {
 
-  const [mode, setMode] = useState<PaletteMode>('dark');
+  const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const defaultTheme = isDarkTheme ? 'dark' : 'light';
+  if (!localStorage.getItem('theme')) {
+    localStorage.setItem('theme', defaultTheme);
+  }
+  const currentTheme = localStorage.getItem('theme') as PaletteMode || defaultTheme;
+
+  const [mode, setMode] = useState<PaletteMode>(currentTheme);
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
-      setMode((prevMode: PaletteMode) =>
-        prevMode === 'light' ? 'dark' : 'light',
-      );
+      setMode((prevMode: PaletteMode) => prevMode === 'light' ? 'dark' : 'light');
     },
   }),
     [],

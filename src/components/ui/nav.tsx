@@ -14,6 +14,12 @@ import Link from '@mui/material/Link/Link';
 export const HeaderNav = (currentTheme: any) => {
   const theme = currentTheme.currentTheme;
   
+  const changeTheme = () => {
+    currentTheme.mode.toggleColorMode();
+    let prevMode = theme.palette.mode === 'light' ? 'dark' : 'light'
+    localStorage.setItem('theme', prevMode);
+  }
+
   return (
 
 <Box component="nav" className='header-navigation'>
@@ -33,7 +39,7 @@ export const HeaderNav = (currentTheme: any) => {
 
       </List>
         <HeaderSearch />
-        <IconButton onClick={currentTheme.mode.toggleColorMode} color="inherit">
+        <IconButton onClick={changeTheme} color="inherit">
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
     </Box>
