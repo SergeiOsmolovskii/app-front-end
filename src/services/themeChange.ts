@@ -1,5 +1,4 @@
 import amber from '@mui/material/colors/amber';
-import deepOrange from '@mui/material/colors/deepOrange';
 import grey from '@mui/material/colors/grey';
 import { PaletteMode } from '@mui/material';
 
@@ -16,9 +15,16 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           info: '#03a9f4',
           success: '#4caf50',
         },
+        secondary: {
+          main: grey[800],
+        },
         bodyBG: '#96aeb1',
         logoBG: '#ffffff',
         divider: amber[200],
+        background: {
+          default: '#4c4a4a',
+          paper: '#d3d3d3',
+        },
         text: {
           primary: '#ffffff',
           secondary: grey[800],
@@ -27,22 +33,25 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       : {
         primary: {
           main: '#0B132B',
-          secondary: '#3a506b',
+          secondary: '#dddddd',
           error: '#c62828',
           Warning: '#e65100',
           info: '#01579b',
           success: '#1b5e20',
         },
+        secondary: {
+          main: grey[100],
+        },
         bodyBG: '#292929',
         logoBG: '#7fc37e',
-        divider: deepOrange[700],
+        divider: '#ddaadd',
         background: {
-          default: deepOrange[900],
-          paper: deepOrange[900],
+          default: '#4c4a4a',
+          paper: '#4c4a4a',
         },
         text: {
           primary: '#ffffff',
-          secondary: grey[500],
+          secondary: grey[100],
         },
       }),
   },

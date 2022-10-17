@@ -16,7 +16,6 @@ import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box/Box';
 
 
-
 function App() {
 
   const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;

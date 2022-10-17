@@ -8,14 +8,27 @@ import HomeIcon from '@mui/icons-material/Home';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { ToggleNav } from './ui/toggleNav';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
+import { SignInDialog } from './ui/signInDialog';
 
 export const AsideNav = () => {
 
   const asideNav = useRef<HTMLElement>(null);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => { 
+    setOpen(true); 
+  };
+
+  const handleClickClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <Box component="nav" className='aside-nav' ref={asideNav} sx={{backgroundColor: 'primary.main', borderLeft: '10px solid', borderColor: 'primary.main'}}>
@@ -52,8 +65,14 @@ export const AsideNav = () => {
           <Box component="span" className='aside-nav-list--item--text'>Log out</Box>
         </ListItem>
 
+        <ListItem onClick={handleClickOpen} className='aside-nav-list--item' color="text.primary">
+          <ExitToAppIcon className='aside-nav--icon' fontSize='large'/>
+          <Box component="span" className='aside-nav-list--item--text'>Log in</Box>
+        </ListItem>
+
       </List>
 
+        <SignInDialog openDialog={open} handleCloseDialog={handleClickClose} />
       <ToggleNav ref={asideNav}/>
     </Box>
   );
