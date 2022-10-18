@@ -14,21 +14,32 @@ import { useRef, useState } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 import { SignInDialog } from './ui/signInDialog';
+import { SignUpDialog } from './ui/signUpDialog';
 
 export const AsideNav = () => {
 
   const asideNav = useRef<HTMLElement>(null);
 
-  const [open, setOpen] = useState(false);
+  const [openSignInDialog, setSignInDialog] = useState(false);
+  
+  
+  const handleClickOpenSignInDialog = () => { 
+    setSignInDialog(true); 
+  };
+  
+  const handleClickCloseSignInDialog = () => {
+    setSignInDialog(false);
+  };
+  
+  const [openSignUpDialog, setSignUpDialog] = useState(false);
 
-  const handleClickOpen = () => { 
-    setOpen(true); 
+  const handleClickOpenSignUpDialog = () => {
+    setSignUpDialog(true);
   };
 
-  const handleClickClose = () => {
-    setOpen(false);
+  const handleClickCloseSignUpDialog = () => {
+    setSignUpDialog(false);
   };
-
 
   return (
     <Box component="nav" className='aside-nav' ref={asideNav} sx={{backgroundColor: 'primary.main', borderLeft: '10px solid', borderColor: 'primary.main'}}>
@@ -60,19 +71,20 @@ export const AsideNav = () => {
           </Link>
         </ListItem>
 
-        <ListItem className='aside-nav-list--item' color="text.primary">
+        <ListItem onClick={handleClickOpenSignUpDialog} className='aside-nav-list--item' color="text.primary">
           <LogoutIcon className='aside-nav--icon' fontSize='large'/>
           <Box component="span" className='aside-nav-list--item--text'>Log out</Box>
         </ListItem>
 
-        <ListItem onClick={handleClickOpen} className='aside-nav-list--item' color="text.primary">
+        <ListItem onClick={handleClickOpenSignInDialog} className='aside-nav-list--item' color="text.primary">
           <ExitToAppIcon className='aside-nav--icon' fontSize='large'/>
           <Box component="span" className='aside-nav-list--item--text'>Log in</Box>
         </ListItem>
 
       </List>
 
-        <SignInDialog openDialog={open} handleCloseDialog={handleClickClose} />
+        <SignInDialog openDialog={openSignInDialog} handleCloseDialog={handleClickCloseSignInDialog} openSignUpDialog={handleClickOpenSignUpDialog}/>
+        <SignUpDialog openDialog={openSignUpDialog} handleCloseDialog={handleClickCloseSignUpDialog} />
       <ToggleNav ref={asideNav}/>
     </Box>
   );
