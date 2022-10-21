@@ -3,3 +3,10 @@ export interface IUser {
   name: string;
   email: string;
 } 
+
+export   interface IUserForRegistration {
+  login: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
