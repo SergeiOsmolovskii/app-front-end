@@ -8,9 +8,12 @@ import InputAdornment from '@mui/material/InputAdornment/InputAdornment';
 
 import { IShowPassword } from 'models/IShowPassword';
 import { IUserForRegistration } from 'models/IUser';
+import { signUp } from '../../services/api';
 
 
 export const SignUpDialog = (props: any) => {
+
+  const dialog = React.useRef(null);
 
   const [password, setPassword] = useState<IShowPassword>({
     password: '',
@@ -45,13 +48,19 @@ export const SignUpDialog = (props: any) => {
         confirmPassword: '',
       }
   });
-  const onSubmit: SubmitHandler<IUserForRegistration> = data => {
-    console.log(data)
-    reset();
+
+  const onSubmit: SubmitHandler<IUserForRegistration> = async (data) => {
+    const response = await signUp(data);
+    if (response.status === 201) {
+      props.handleCloseDialog();
+      props.openSuccessSignUpDialog();
+    }
+    // reset();
+    return response;
   };
 
   return (
-    <Dialog open={props.openDialog} onClose={props.handleCloseDialog}>
+    <Dialog open={props.openDialog} onClose={props.handleCloseDialog} ref={dialog}> 
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle color="text.secondary">Sign up</DialogTitle>
 
@@ -66,7 +75,7 @@ export const SignUpDialog = (props: any) => {
                 message: 'Login must be at least 3 characters'
               },
               maxLength: {
-                value: 20,
+                value: 30,
                 message: 'Login must be less than 30 characters'
               }
             })}
@@ -109,7 +118,7 @@ export const SignUpDialog = (props: any) => {
           <TextField
             autoComplete='on' required id="passwordRepeat" label="Re-enter your password" type='password' margin="dense" fullWidth variant="standard" color='secondary'
             {...register("confirmPassword", {
-              required: 'Password is required',
+              required: 'The passwords do not match',
               validate: value => value === password.password || 'The passwords do not match'
             })
             }

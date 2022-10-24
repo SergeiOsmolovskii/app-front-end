@@ -15,13 +15,13 @@ import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { SignInDialog } from './ui/signInDialog';
 import { SignUpDialog } from './ui/signUpDialog';
+import { SuccessSignUpDialog } from './ui/successSignUpDialog';
 
 export const AsideNav = () => {
 
   const asideNav = useRef<HTMLElement>(null);
 
   const [openSignInDialog, setSignInDialog] = useState(false);
-  
   
   const handleClickOpenSignInDialog = () => { 
     setSignInDialog(true); 
@@ -39,6 +39,16 @@ export const AsideNav = () => {
 
   const handleClickCloseSignUpDialog = () => {
     setSignUpDialog(false);
+  };
+
+  const [openSuccessSignUpDialog, setSuccessSignUpDialog] = useState(false);
+
+  const handleClickOpenSuccessSignUpDialog = () => {
+    setSuccessSignUpDialog(true);
+  };
+
+  const handleClickCloseSuccessSignUpDialog = () => {
+    setSuccessSignUpDialog(false);
   };
 
   return (
@@ -84,7 +94,8 @@ export const AsideNav = () => {
       </List>
 
         <SignInDialog openDialog={openSignInDialog} handleCloseDialog={handleClickCloseSignInDialog} openSignUpDialog={handleClickOpenSignUpDialog}/>
-        <SignUpDialog openDialog={openSignUpDialog} handleCloseDialog={handleClickCloseSignUpDialog} />
+        <SignUpDialog openDialog={openSignUpDialog} handleCloseDialog={handleClickCloseSignUpDialog} openSignInDialog={handleClickOpenSignInDialog} openSuccessSignUpDialog={handleClickOpenSuccessSignUpDialog}/>
+        <SuccessSignUpDialog openDialog={openSuccessSignUpDialog} closeSuccessSignUpDialog={handleClickCloseSuccessSignUpDialog} goToLogIn={handleClickOpenSignInDialog} />
       <ToggleNav ref={asideNav}/>
     </Box>
   );

@@ -8,5 +8,5 @@ export   interface IUserForRegistration {
   login: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
 };

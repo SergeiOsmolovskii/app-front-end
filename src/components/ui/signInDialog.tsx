@@ -38,7 +38,7 @@ import { IShowPassword } from '../../models/IShowPassword';
     props.openSignUpDialog();
   }
 
-  return (
+  return (  
     <Dialog open={props.openDialog} onClose={props.handleCloseDialog}>
       <Box component="form">
         <DialogTitle color="text.secondary">Sign in</DialogTitle>
