@@ -4,9 +4,19 @@ export interface IUser {
   email: string;
 } 
 
-export   interface IUserForRegistration {
+export interface IUserForRegistration {
   login: string;
   email: string;
   password: string;
   confirmPassword?: string;
 };
+
+export interface ITokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface IAuthParams {
+  login: string;
+  password: string;
+}

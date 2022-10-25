@@ -1,10 +1,15 @@
-import axios from 'axios';
-import { IUserForRegistration } from '../models/IUser';
-export const baseURL = 'http://localhost:4000';
-
+import { IUserForRegistration, IAuthParams } from '../models/IUser';
+import { api } from '../axios/interceptor'; 
 
 export const signUp = async (data: IUserForRegistration) => {
-  const response = await axios.post(`${baseURL}/auth/signup`, data);
+  const response = await api.post(`/auth/signup`, data);
   console.log(response);
   return response;
 };
+
+export const signIn = async (data: IAuthParams) => {
+  const response = await api.post(`/auth/signin`, data);
+  
+  console.log(response);
+  return response;
+}
