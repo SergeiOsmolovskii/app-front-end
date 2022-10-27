@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Routes, Route, Link} from 'react-router-dom';
 import './App.css';
 import { Header } from './components/header';
@@ -14,7 +14,10 @@ import { SettingsPage } from './pages/settingsPage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box/Box';
-
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { userSlice } from './store/reducers/userSlice';
+import { featchUser } from './store/reducers/actionsCreators';
+import { parseJwt } from './services/parseJWT';
 
 function App() {
 
@@ -35,9 +38,17 @@ function App() {
     [],
   );
 
-  
-
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      const userId: string = parseJwt(token).userId;
+      dispatch(featchUser(userId));
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

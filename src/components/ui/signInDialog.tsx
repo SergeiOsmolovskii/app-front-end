@@ -54,6 +54,9 @@ export const SignInDialog = (props: any) => {
       if (error.response.status === 403) {
         setSubmitError('Invalid login or password');
       }
+      if (error.response.status === 500) {
+        setSubmitError('Server error');
+      }
     }
 
     // reset();
@@ -124,7 +127,6 @@ export const SignInDialog = (props: any) => {
                   </ListItem>)
                   : null
               }
-
 
             </List>
           </Box>

@@ -18,14 +18,12 @@ api.interceptors.request.use((request) => {
   if (accessToken) {
     request.headers!["Authorization"] = `Bearer ${accessToken}`;
   }
-  console.log('request send');
   return request;
 }, (error) => {
   return Promise.reject(error);
 });
 
 api.interceptors.response.use((response) => {
-  console.log('response received');
   return response;
 }, (error) => {
   return Promise.reject(error);

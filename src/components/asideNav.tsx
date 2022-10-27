@@ -16,6 +16,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { SignInDialog } from './ui/signInDialog';
 import { SignUpDialog } from './ui/signUpDialog';
 import { SuccessSignUpDialog } from './ui/successSignUpDialog';
+import { useAppSelector } from 'hooks/redux';
 
 export const AsideNav = () => {
 
@@ -51,13 +52,16 @@ export const AsideNav = () => {
     setSuccessSignUpDialog(false);
   };
 
+  const userLogin = useAppSelector(state => state.userReducer.login);
+  const userEmail = useAppSelector(state => state.userReducer.email);
+  
   return (
     <Box component="nav" className='aside-nav' ref={asideNav} sx={{backgroundColor: 'primary.main', borderLeft: '10px solid', borderColor: 'primary.main'}}>
       <List className='aside-nav-list'>
         
         <ListItem className='aside-nav-list--item' color="text.primary">
           <PersonIcon className='aside-nav--icon' fontSize='large'/>
-          <Box component="span" className='aside-nav-list--item--text'>User name</Box>
+          <Box component="span" className='aside-nav-list--item--text' title={userEmail}>{userLogin}</Box>
         </ListItem>
 
         <ListItem className='aside-nav-list--item' color="text.primary">
@@ -93,9 +97,25 @@ export const AsideNav = () => {
 
       </List>
 
-        <SignInDialog openDialog={openSignInDialog} handleCloseDialog={handleClickCloseSignInDialog} openSignUpDialog={handleClickOpenSignUpDialog}/>
-        <SignUpDialog openDialog={openSignUpDialog} handleCloseDialog={handleClickCloseSignUpDialog} openSignInDialog={handleClickOpenSignInDialog} openSuccessSignUpDialog={handleClickOpenSuccessSignUpDialog}/>
-        <SuccessSignUpDialog openDialog={openSuccessSignUpDialog} closeSuccessSignUpDialog={handleClickCloseSuccessSignUpDialog} goToLogIn={handleClickOpenSignInDialog} />
+        <SignInDialog
+          openDialog={openSignInDialog} 
+          handleCloseDialog={handleClickCloseSignInDialog} 
+          openSignUpDialog={handleClickOpenSignUpDialog}
+        />
+       
+        <SignUpDialog 
+          openDialog={openSignUpDialog} 
+          handleCloseDialog={handleClickCloseSignUpDialog} 
+          openSignInDialog={handleClickOpenSignInDialog} 
+          openSuccessSignUpDialog={handleClickOpenSuccessSignUpDialog}
+        />
+               
+        <SuccessSignUpDialog 
+        openDialog={openSuccessSignUpDialog} 
+        closeSuccessSignUpDialog={handleClickCloseSuccessSignUpDialog} 
+        goToLogIn={handleClickOpenSignInDialog} 
+      />
+      
       <ToggleNav ref={asideNav}/>
     </Box>
   );

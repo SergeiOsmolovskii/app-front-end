@@ -13,3 +13,13 @@ export const signIn = async (data: IAuthParams) => {
   console.log(response);
   return response;
 }
+
+export const getUserByID = async (id: string) => {
+  const response = await api.get(`/user/${id}`);
+  return response;
+}
+
+export const getAllUsers = async () => {
+  const response = await api.get(`/user`);
+  return response;
+}
