@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-import { getUserByID, getAllUsers } from "../../services/api";
+import { getUserByID } from "../../services/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const featchUser = createAsyncThunk(
@@ -9,7 +8,11 @@ export const featchUser = createAsyncThunk(
       const response = await getUserByID(id);
       return response.data;
     } catch (e: Error | any) {
-      return thunkAPI.rejectWithValue('Some error');
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
-);  
+);
+
+export const logOutUser = () => {
+  
+}

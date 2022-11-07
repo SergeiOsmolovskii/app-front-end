@@ -4,11 +4,14 @@ import '../../styles/signInDialog.css';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Box, TextField, List, ListItem, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
-import { Visibility, VisibilityOff, Clear as ClearIcon, Check as CheckIcon } from '@mui/icons-material';
+import { Visibility, VisibilityOff, Clear as ClearIcon } from '@mui/icons-material';
 import { IShowPassword } from '../../models/IShowPassword';
 import { signIn } from '../../services/api';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAuthParams } from 'models/IUser';
+import { useAppDispatch } from 'hooks/redux';
+import { featchUser } from 'store/reducers/actionsCreators';
+import jwt_decode from 'jwt-decode';
 
 
 export const SignInDialog = (props: any) => {
@@ -41,14 +44,20 @@ export const SignInDialog = (props: any) => {
       mode: 'onBlur',
     });
 
+  const dispatch = useAppDispatch();
+  
   const onSubmit: SubmitHandler<IAuthParams> = async (data) => {
-    console.log(data);
-
+  
     try {
       const response = await signIn(data);
       if (response.status === 201) {
+        const decodedAccessToken: any = jwt_decode(response.data.accessToken);
+        dispatch(featchUser(decodedAccessToken.userId));
         localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem('refreshToken', response.data.refreshToken);
+        props.handleCloseDialog();
+        props.openSnackBar(true);
+        props.snackBarMessage('You have successfully logged in!');
       }
     } catch (error: Error | any) {
       if (error.response.status === 403) {
@@ -58,8 +67,7 @@ export const SignInDialog = (props: any) => {
         setSubmitError('Server error');
       }
     }
-
-    // reset();
+    reset();
   }
 
   return (

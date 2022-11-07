@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Routes, Route, Link} from 'react-router-dom';
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
@@ -20,7 +20,15 @@ import { featchUser } from './store/reducers/actionsCreators';
 import { parseJwt } from './services/parseJWT';
 
 function App() {
+  
+  if (!localStorage.getItem('accessToken'))  {
+    localStorage.setItem('accessToken', '');
+  }
 
+  if (!localStorage.getItem('refreshToken'))  {
+    localStorage.setItem('refreshToken', '');
+  }
+ 
   const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const defaultTheme = isDarkTheme ? 'dark' : 'light';
   if (!localStorage.getItem('theme')) {
@@ -41,9 +49,9 @@ function App() {
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+  
+  useLayoutEffect(() => {
+    const token = localStorage.getItem('accessToken')!;
     if (token) {
       const userId: string = parseJwt(token).userId;
       dispatch(featchUser(userId));

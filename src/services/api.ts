@@ -1,14 +1,15 @@
 import { IUserForRegistration, IAuthParams } from '../models/IUser';
-import { api } from '../axios/interceptor'; 
+import { api, baseURL } from '../axios/interceptor'; 
+import axios from 'axios';
 
 export const signUp = async (data: IUserForRegistration) => {
-  const response = await api.post(`/auth/signup`, data);
+  const response = await axios.post(`${baseURL}/auth/signup`, data);
   console.log(response);
   return response;
 };
 
 export const signIn = async (data: IAuthParams) => {
-  const response = await api.post(`/auth/signin`, data);
+  const response = await axios.post(`${baseURL}/auth/signin`, data);
   
   console.log(response);
   return response;
@@ -21,5 +22,11 @@ export const getUserByID = async (id: string) => {
 
 export const getAllUsers = async () => {
   const response = await api.get(`/user`);
+  return response;
+}
+
+export const createNewToken = async (refreshToken: string) => {
+  const response = await axios.post(`${baseURL}/auth/refresh`, { refreshToken });
+  console.log(response);
   return response;
 }
